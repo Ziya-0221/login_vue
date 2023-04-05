@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Belajar Event Handling</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <h1>{{judul}}</h1>
+            <form v-on:submit.prevent>
+                <input type="text" name="nama" id="namaSiswa" @keyup.enter="simpan" v-model="siswa" placeholder="Masukkan Nama Siswa...">
+                <button type="button" @click="simpan">Simpan</button>
+            </form>
+
+        <div>
+            <table border="1" v-if="dataSiswa.length > 0">
+                <thead>
+                    <tr><td>NO</td><td>Nama Siswa</td></tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(siswa, index) in dataSiswa" :key="index">
+                        <td>{{index+1}}</td><td>{{siswa}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <tr>
+            <form v-on:submit.prevent>
+                <input type="text" name="nama" id="namaKelas" @keyup.enter="save" v-model="kelas" placeholder="Masukkan Nama Kelas...">
+                <button type="button" @click="save">Simpan</button>
+            </form>
+            
+            <table border="1" v-if="dataKelas.length > 0">
+                <thead>
+                    <tr><td>NO</td><td>Nama Kelas</td></tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(kelas, index) in dataKelas" :key="index">
+                        <td>{{index+1}}</td><td>{{kelas}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </tr>
+        </div>
+            <h1 v-else>Data Tidak Ada</h1>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el : "#app",
+            data :{
+                judul : "Belajar Event Handling di Vue js",
+                dataSiswa :['Arya','Budi','Cici','Diah','Eko'],
+                siswa : '',
+                dataKelas :['XIR5','XIR7','XIT1','XIT5'],
+                kelas:'',
+            },
+            methods :{
+                pesan: function(){
+                    alert('Selamat Datang di dunia VUE');
+                },
+                simpan: function(){
+                    this.dataSiswa.push(this.siswa);
+                    this.siswa;
+                },
+                save: function(){
+                    this.dataKelas.push(this.kelas);
+                    this.kelas;
+                }
+            }
+        });
+    </script>
+    </html>

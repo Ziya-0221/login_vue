@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+        <title>Hello Vue CDN</title>
+    </head>
+    <body>
+        <div id="app">
+            <h1>{{message}}</h1>
+            <p>{{greet ()}}</p>
+            <p>{{konten("Nabella Kurnia","08563618104") }}</p>
+            Nama : <input type="text" name="nama" v-bind:value="nama" v-bind:style="style"><br>
+            Alamat : <textarea v-model="alamat"></textarea><br>
+            <label>Alamat saya adalah : {{alamat}}</label>
+            <p v-if="itemInStock>10">{{itemInStock}} in stock</p>
+            <p v-else-if="itemInStock>5">cepat selak habis! stok {{itemInStock}}</p>
+            <p v-else>Stoknya tinggal {{itemInStock}}. Ini untuk pribadi</p>
+            <ol><li v-for= "(k, index) in kelas">{{k}}</li></ol>
+        </div>
+
+        <script>
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    message: "Hello World",
+                    nama : "Kuren Awikwok",
+                    style : {
+                        'border':'5px solid orange',
+                        'background':'red',
+                        'color':'white'
+                        },
+                alamat : '',
+                itemInStock : 5,
+                kelas : ["XIRPL1","XIRPL5","XITKJ5","XIRPL1"],
+                },
+                methods:{
+                    greet: function(){
+                        return 'Selamat pagi';
+                    },
+                    konten: function(nama, telp){
+                        var data_nama = 'Nama saya adalah '+nama+
+                        ', nomor telp saya adalah '+telp;
+                        return data_nama;
+                    }
+                }
+            });
+        </script>
+    </body>
+    </html>
